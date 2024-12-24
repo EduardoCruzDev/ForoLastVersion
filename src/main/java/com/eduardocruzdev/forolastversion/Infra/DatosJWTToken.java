@@ -1,4 +1,4 @@
 package com.eduardocruzdev.forolastversion.Infra;
 
-public record DatosJWTToken() {
+public record DatosJWTToken(String jwTtoken) {
 }
