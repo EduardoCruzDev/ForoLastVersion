@@ -26,7 +26,7 @@ public class SecurityConfigurations {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .authorizeHttpRequests(authz->
-                        authz.requestMatchers(HttpMethod.POST,"/login").permitAll()
+                        authz.requestMatchers(HttpMethod.POST,"/login","/register").permitAll()
                                 .requestMatchers("/swagger-ui/**","/swagger-ui/index.html", "/v3/api-docs/**").permitAll()
                                 .anyRequest().authenticated())
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

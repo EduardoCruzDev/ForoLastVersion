@@ -2,12 +2,12 @@ package com.eduardocruzdev.forolastversion.domain.usuarios;
 
 import com.eduardocruzdev.forolastversion.domain.topico.Topico;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.antlr.v4.runtime.misc.NotNull;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -41,6 +41,18 @@ public class Usuario implements UserDetails {
 
     public Usuario(DatosRespuestaUsuario datosRespuestaUsuario) {
         this.login = datosRespuestaUsuario.login();
+    }
+
+    public Usuario(@Valid DatosRegistroUsuario datosRegistroUsuario) {
+        this.login = datosRegistroUsuario.login();
+        this.clave = datosRegistroUsuario.clave();
+        this.email = datosRegistroUsuario.email();
+    }
+
+    public Usuario(@Valid DatosRegistroUsuario datosRegistroUsuario, String passwordCifrada) {
+        this.login = datosRegistroUsuario.login();
+        this.clave = passwordCifrada;
+        this.email = datosRegistroUsuario.email();
     }
 
     @Override
